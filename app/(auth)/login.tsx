@@ -1,23 +1,27 @@
 import { COLORS } from "@/constants/theme"
 import { styles } from "@/styles/auth.styles"
 import { useSSO } from "@clerk/expo"
+import { useHostedAuth } from "@clerk/expo/hosted-auth"
 import { Ionicons } from "@expo/vector-icons"
 import { Text } from "@react-navigation/elements"
-import { useRouter } from "expo-router"
-import { Image, TouchableOpacity, View } from "react-native"
+import { Image, Platform, TouchableOpacity, View } from "react-native"
 
 export default function Login() {
+    const { startHostedAuth } = useHostedAuth()
     const { startSSOFlow } = useSSO()
-    const router = useRouter()
 
     const handleGoogleSignIn = async () => {
         try {
-            const { createdSessionId, setActive } = await startSSOFlow({
-                strategy: "oauth_google",
-            })
-            if (setActive && createdSessionId) {
-                setActive({ session: createdSessionId })
-                router.replace("/profile")
+            if (Platform.OS === "web") {
+                const { createdSessionId, setActive } = await startSSOFlow({
+                    strategy: "oauth_google",
+                })
+
+                if (createdSessionId && setActive) {
+                    await setActive({ session: createdSessionId })
+                }
+            } else {
+                await startHostedAuth()
             }
         } catch (error) {
             console.error("OAuth error:", error)

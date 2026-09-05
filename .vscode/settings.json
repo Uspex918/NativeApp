@@ -4,5 +4,6 @@
         "source.organizeImports": "explicit",
         "source.sortMembers": "explicit"
     },
-    "editor.rulers": [120]
+    "editor.rulers": [120],
+    "editor.wordWrapColumn": 120
 }

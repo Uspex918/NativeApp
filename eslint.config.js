@@ -9,7 +9,15 @@ module.exports = defineConfig([
     },
     {
         rules: {
-            "max-len": ["warn", { code: 120 }], // 100 символов вместо 80
+            "prettier/prettier": [
+                "error",
+                {
+                    singleQuote: false,
+                    printWidth: 100,
+                    tabWidth: 4,
+                    endOfLine: "auto",
+                },
+            ],
         },
     },
 ])
