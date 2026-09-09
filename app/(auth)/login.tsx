@@ -19,11 +19,15 @@ export default function Login() {
                 if (createdSessionId && setActive) {
                     await setActive({ session: createdSessionId })
                 }
+            } else if (Platform.OS === "android") {
+                // Use the callback registered by @clerk/expo in AndroidManifest.
+                // This avoids Expo's nativeapp scheme being selected by
+                // AuthSession in a standalone Android build.
+                await startHostedAuth({
+                    redirectUrl:
+                        "clerk://com.expogio.nativeapp.hosted-callback",
+                })
             } else {
-                // Clerk's Expo plugin registers the canonical Android callback:
-                // clerk://<android.package>.hosted-callback. Let the SDK build
-                // this URL so it stays in sync with app.json and the native
-                // intent-filter generated during the EAS build.
                 await startHostedAuth()
             }
         } catch (error) {
