@@ -19,6 +19,11 @@ export default function Login() {
                 if (createdSessionId && setActive) {
                     await setActive({ session: createdSessionId })
                 }
+            } else if (Platform.OS === "android") {
+                await startHostedAuth({
+                    redirectUrl:
+                        "clerk://com.expogio.nativeapp.hosted-callback",
+                })
             } else {
                 await startHostedAuth()
             }
