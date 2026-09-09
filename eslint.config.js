@@ -9,11 +9,15 @@ module.exports = defineConfig([
     },
     {
         rules: {
+            "no-console": "warn",
+            "@typescript-eslint/no-explicit-any": "warn",
+            "@typescript-eslint/no-unused-expressions": "warn",
             "prettier/prettier": [
                 "error",
                 {
                     singleQuote: false,
-                    printWidth: 100,
+                    printWidth: 130,
+                    objectWrap: "collapse",
                     tabWidth: 4,
                     endOfLine: "auto",
                 },

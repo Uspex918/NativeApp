@@ -3,8 +3,7 @@ import { styles } from "@/styles/auth.styles"
 import { useSSO } from "@clerk/expo"
 import { useHostedAuth } from "@clerk/expo/hosted-auth"
 import { Ionicons } from "@expo/vector-icons"
-import { Text } from "@react-navigation/elements"
-import { Image, Platform, TouchableOpacity, View } from "react-native"
+import { Image, Platform, Text, TouchableOpacity, View } from "react-native"
 
 export default function Login() {
     const { startHostedAuth } = useHostedAuth()
@@ -35,14 +34,14 @@ export default function Login() {
                 <View style={styles.logoContainer}>
                     <Ionicons name="leaf" size={32} color={COLORS.primary} />
                 </View>
-                <Text style={styles.appName}>spotlight</Text>
-                <Text style={styles.tagline}>do not miss anything</Text>
+                <Text style={styles.appName}>EasyGram</Text>
+                <Text style={styles.tagline}>lake a ProstoGram</Text>
             </View>
 
             {/* ILLUSTRATION*/}
             <View style={styles.illustrationContainer}>
                 <Image
-                    source={require("../../assets/images/auth-bg.png")}
+                    source={require("../../assets/images/software tester-bro.png")}
                     style={styles.illustration}
                     resizeMode="cover"
                 />

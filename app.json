@@ -7,7 +7,6 @@
         "icon": "./assets/images/icon.png",
         "scheme": "nativeapp",
         "userInterfaceStyle": "automatic",
-        "newArchEnabled": true,
         "ios": {
             "supportsTablet": true
         },
@@ -18,8 +17,8 @@
                 "backgroundImage": "./assets/images/android-icon-background.png",
                 "monochromeImage": "./assets/images/android-icon-monochrome.png"
             },
-            "edgeToEdgeEnabled": true,
-            "predictiveBackGestureEnabled": false
+            "predictiveBackGestureEnabled": false,
+            "package": "com.expogio.nativeapp"
         },
         "web": {
             "output": "static",
@@ -28,6 +27,13 @@
         "plugins": [
             "expo-router",
             "@clerk/expo",
+            [
+                "expo-navigation-bar",
+                {
+                    "style": "dark",
+                    "enforceContrast": false
+                }
+            ],
             [
                 "expo-splash-screen",
                 {
@@ -40,11 +46,25 @@
                     }
                 }
             ],
-            "expo-web-browser"
+            "expo-web-browser",
+            "expo-secure-store",
+            "expo-font",
+            "expo-image",
+            "expo-status-bar"
         ],
         "experiments": {
             "typedRoutes": true,
             "reactCompiler": true
+        },
+        "extra": {
+            "router": {},
+            "expo-navigation-bar": {
+                "enforceContrast": false,
+                "style": "dark"
+            },
+            "eas": {
+                "projectId": "22013833-9174-46d6-959a-400662d2e3c0"
+            }
         }
     }
 }
