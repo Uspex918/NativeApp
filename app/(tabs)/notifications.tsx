@@ -5,7 +5,6 @@ import { api } from "@/convex/_generated/api"
 import { styles } from "@/styles/notifications.styles"
 import { Ionicons } from "@expo/vector-icons"
 import { useQuery } from "convex/react"
-import React from "react"
 import { FlatList, Text, View } from "react-native"
 
 export default function Notifications() {
@@ -17,7 +16,7 @@ export default function Notifications() {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.headerTitle}>Уведомления</Text>
+                <Text style={styles.headerTitle}>Notifications</Text>
             </View>
             <FlatList
                 data={notifications}

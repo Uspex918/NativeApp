@@ -50,8 +50,38 @@ export const STORIES = [
 
     {
         id: "9",
-        username: "ирина п",
-        avatar: "https://unsplash.com/photos/young-woman-illuminated-by-red-and-green-lights-SVuwruJJiZg",
+        username: "eMusk",
+        avatar: require("../assets/images/musk.jpg"),
+        hasStory: true,
+    },
+    {
+        id: "10",
+        username: "dTrump",
+        avatar: require("../assets/images/trump.png"),
+        hasStory: true,
+    },
+    {
+        id: "11",
+        username: "kMbappe",
+        avatar: require("../assets/images/mbappe.png"),
+        hasStory: true,
+    },
+    {
+        id: "12",
+        username: "sigmaBoy",
+        avatar: require("../assets/images/sBoy.jpeg"),
+        hasStory: true,
+    },
+    {
+        id: "13",
+        username: "aEinstein",
+        avatar: require("../assets/images/aEinstein.png"),
+        hasStory: true,
+    },
+    {
+        id: "14",
+        username: "nEgadze",
+        avatar: require("../assets/images/egadze.png"),
         hasStory: true,
     },
 ]

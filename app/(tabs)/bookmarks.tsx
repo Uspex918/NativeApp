@@ -2,13 +2,17 @@ import { Loader } from "@/components/Loader"
 import { COLORS } from "@/constants/theme"
 import { api } from "@/convex/_generated/api"
 import { styles } from "@/styles/feed.styles"
+import { Ionicons } from "@expo/vector-icons"
 import { useQuery } from "convex/react"
 import { Image } from "expo-image"
-import React from "react"
-import { ScrollView, Text, View } from "react-native"
+import { useState } from "react"
+import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native"
 
 export default function Bookmarks() {
     const bookmarkedPosts = useQuery(api.bookmarks.getBookmarkedPosts)
+    const [selectedPost, setSelectedPost] = useState<
+        NonNullable<typeof bookmarkedPosts>[number] | null
+    >(null)
     const x = bookmarkedPosts?.length
 
     console.log("массив", bookmarkedPosts)
@@ -32,13 +36,14 @@ export default function Bookmarks() {
                 {bookmarkedPosts.map((post) => {
                     if (!post) return null
                     return (
-                        <View
+                        <TouchableOpacity
                             key={post._id}
                             style={{
                                 width: "33.33%",
                                 padding: 1,
                                 borderRadius: 2,
                             }}
+                            onPress={() => setSelectedPost(post)}
                         >
                             <Image
                                 source={post.imageUrl}
@@ -47,10 +52,36 @@ export default function Bookmarks() {
                                 transition={200}
                                 cachePolicy="memory-disk"
                             />
-                        </View>
+                        </TouchableOpacity>
                     )
                 })}
             </ScrollView>
+
+            <Modal
+                visible={selectedPost !== null}
+                animationType="fade"
+                transparent
+                onRequestClose={() => setSelectedPost(null)}
+            >
+                <View style={styles.bookmarkModalBackdrop}>
+                    <TouchableOpacity
+                        style={styles.bookmarkModalClose}
+                        onPress={() => setSelectedPost(null)}
+                        accessibilityRole="button"
+                        accessibilityLabel="Close image"
+                    >
+                        <Ionicons name="close" size={28} color={COLORS.white} />
+                    </TouchableOpacity>
+                    {selectedPost && (
+                        <Image
+                            source={selectedPost.imageUrl}
+                            style={styles.bookmarkModalImage}
+                            contentFit="contain"
+                            cachePolicy="memory-disk"
+                        />
+                    )}
+                </View>
+            </Modal>
         </View>
     )
 }

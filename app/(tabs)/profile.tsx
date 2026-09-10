@@ -15,6 +15,7 @@ import {
     Modal,
     Platform,
     ScrollView,
+    Share,
     Text,
     TextInput,
     TouchableOpacity,
@@ -45,6 +46,13 @@ export default function Profile() {
     const handleSaveProfile = async () => {
         await updateProfile(editedProfile)
         setIsEditModalVisible(false)
+    }
+
+    const handleShareProfile = async () => {
+        await Share.share({
+            title: `Profile of ${currentUser?.username ?? "user"}`,
+            message: `Check out @${currentUser?.username ?? "user"} on ProstoGram:\nnativeapp://user/${currentUser?._id ?? ""}`,
+        })
     }
 
     if (!currentUser || posts === undefined) return <Loader />
@@ -118,7 +126,12 @@ export default function Profile() {
                                 Edit Profile
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.shareButton}>
+                        <TouchableOpacity
+                            style={styles.shareButton}
+                            onPress={handleShareProfile}
+                            accessibilityRole="button"
+                            accessibilityLabel="Share profile"
+                        >
                             <Ionicons
                                 name="share-outline"
                                 size={20}
